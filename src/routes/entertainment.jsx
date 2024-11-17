@@ -5,7 +5,8 @@ import { userPlaceholder } from "../data/data";
 import "../index.css";
 import styles from "./entertainment.module.css";
 
-import { MOVIEDB_KEY } from "../../Secrets";
+// import { MOVIEDB_KEY } from "../../Secrets";
+import { MOVIES_API_KEY } from "../../api.js";
 
 /// Category Skeleton shown while loading
 const CategorySkeleton = () => (
@@ -46,7 +47,7 @@ const EntertainmentPage = () => {
   const fetchMovies = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${MOVIEDB_KEY}`
+        `https://api.themoviedb.org/3/movie/popular?api_key=${MOVIES_API_KEY}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
