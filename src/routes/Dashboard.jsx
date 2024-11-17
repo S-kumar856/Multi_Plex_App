@@ -11,7 +11,8 @@ import { WeatherCard, WeatherSkeleton } from "../components/weatherCard";
 import styles from "./Dashboard.module.css";
 
 // API Keys
-import { NYTAPIKEY, OPENWEATHERMAP_KEY } from "../../Secrets";
+// import { NYTAPIKEY, OPENWEATHERMAP_KEY } from "../../Secrets";
+import { NEWS_API_KEY, WEATHER_API_KEY } from "../../api.js";
 
 const DashboardPage = () => {
   // user variables
@@ -63,11 +64,12 @@ const DashboardPage = () => {
   const fetchNewsData = async () => {
     try {
       const response = await fetch(
-        `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${NYTAPIKEY}`
+        `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${NEWS_API_KEY}`
       );
       const data = await response.json();
-      console.log(NYTAPIKEY);
+      console.log(NEWS_API_KEY);
       setNews(data.results[0]);
+      // setNewsLoading(false);
     } catch (error) {
       console.error("Error fetching news data:", error);
     } finally {
@@ -88,7 +90,7 @@ const DashboardPage = () => {
       const position = await getCurrentPosition();
       const { latitude, longitude } = position.coords;
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${OPENWEATHERMAP_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API_KEY}`
       );
 
       const data = await response.json();
@@ -157,14 +159,16 @@ const DashboardPage = () => {
         <NotesCard
           note={"This is how I am going to learn MERN Stack in next 3 months."}
         />
-
-        {newsLoading ? (
-          <NewsSkeleton />
-        ) : news ? (
-          <NewsCard news={news} />
-        ) : (
-          <p>Error fetching news data</p>
-        )}
+        
+          
+          {newsLoading  ? (
+            <NewsSkeleton />
+          ) : news ? (
+            <NewsCard news={news} />
+          ) : (
+            <p>Error fetching news data</p>
+          )}
+      
 
         <TimerCard
           timerTime={timerTime}
