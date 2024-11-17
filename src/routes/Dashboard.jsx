@@ -8,7 +8,7 @@ import { TimerCard } from "../components/timerCard";
 import { UserCard } from "../components/userCard";
 import { WeatherCard, WeatherSkeleton } from "../components/weatherCard";
 
-import styles from "./dashboard.module.css";
+import styles from "./Dashboard.module.css";
 
 // API Keys
 import { NYTAPIKEY, OPENWEATHERMAP_KEY } from "../../Secrets";
